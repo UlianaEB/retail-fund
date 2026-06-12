@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellington Commercial Property Joint Venture</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:         #0F1117;
+    --ink-mid:     #2C2D3A;
+    --ink-light:   #6B6C7E;
+    --ink-faint:   #9899A8;
+    --cream:       #F8F6F1;
+    --warm:        #FDFCFA;
+    --border:      #E4E1DA;
+    --border-soft: #EDEBE6;
+    --gold:        #B8892E;
+    --gold-light:  #D4A84B;
+    --gold-pale:   #FBF5E6;
+    --teal:        #2A7B7C;
+    --teal-pale:   #EAF4F4;
+    --green:       #2D6A4F;
+    --green-pale:  #EDF5F0;
+    --red-soft:    #C0392B;
+    --slate:       #2E3A4E;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    font-size:14px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* HEADER */
+  .header {
+    background:var(--ink);
+    padding:56px 64px 48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .header::before {
+    content:'';
+    position:absolute;
+    top:-80px; right:-80px;
+    width:420px; height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(184,137,46,0.12) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .header::after {
+    content:'';
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(184,137,46,0.3),transparent);
+  }
+  .h-eyebrow {
+    font-size:9px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .h-title {
+    font-family:'DM Serif Display',serif;
+    font-size:50px;
+    color:white;
+    line-height:1.05;
+    margin-bottom:6px;
+    font-weight:400;
+  }
+  .h-title em { font-style:italic; color:var(--gold-light); }
+  .h-sub {
+    font-size:13px;
+    color:rgba(255,255,255,0.35);
+    margin-bottom:40px;
+    font-weight:300;
+  }
+  .h-stats {
+    display:flex;
+    gap:0;
+    flex-wrap:wrap;
+  }
+  .hstat {
+    padding:0 36px 0 0;
+    margin-right:36px;
+    border-right:1px solid rgba(255,255,255,0.08);
+  }
+  .hstat:last-child { border-right:none; margin-right:0; padding-right:0; }
+  .hstat .sv {
+    font-family:'DM Serif Display',serif;
+    font-size:28px;
+    color:white;
+    line-height:1;
+  }
+  .hstat .sv.gold { color:var(--gold-light); }
+  .hstat .sl {
+    font-size:9px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.3);
+    margin-top:5px;
+    font-weight:500;
+  }
+
+  /* PAGE */
+  .page { max-width:1040px; margin:0 auto; padding:52px 64px 64px; }
+
+  /* SECTION */
+  .sec-eyebrow {
+    font-size:9px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .sec-title {
+    font-family:'DM Serif Display',serif;
+    font-size:24px;
+    font-weight:400;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .sec-sub {
+    font-size:13px;
+    color:var(--ink-light);
+    margin-bottom:28px;
+    max-width:600px;
+    line-height:1.55;
+    font-weight:300;
+  }
+  .section { margin-bottom:52px; }
+
+  /* WHY GRID */
+  .why-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:2px;
+    background:var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .why-block {
+    background:var(--warm);
+    padding:28px 26px;
+  }
+  .why-block .wb-num {
+    font-family:'DM Serif Display',serif;
+    font-size:11px;
+    color:var(--gold-light);
+    letter-spacing:0.06em;
+    margin-bottom:10px;
+  }
+  .why-block .wb-head {
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    margin-bottom:8px;
+    line-height:1.3;
+  }
+  .why-block .wb-body {
+    font-size:12.5px;
+    color:var(--ink-light);
+    line-height:1.6;
+    font-weight:300;
+  }
+  .why-block .wb-body strong { color:var(--teal); font-weight:600; }
+
+  /* WHO WE ARE */
+  .who-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .who-card {
+    background:var(--warm);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:28px;
+  }
+  .who-card.featured {
+    background:var(--gold-pale);
+    border-color:rgba(184,137,46,0.2);
+  }
+  .who-card .wc-label {
+    font-size:9px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .who-card.featured .wc-label { color:var(--gold); }
+  .who-card .wc-head {
+    font-family:'DM Serif Display',serif;
+    font-size:18px;
+    color:var(--ink);
+    margin-bottom:10px;
+    font-weight:400;
+  }
+  .who-card .wc-body {
+    font-size:12.5px;
+    color:var(--ink-light);
+    line-height:1.65;
+    font-weight:300;
+  }
+  .who-card .wc-body strong { color:var(--gold); font-weight:600; }
+  .who-card .wc-body em { font-style:italic; color:var(--ink-mid); }
+
+  /* HOW IT WORKS */
+  .mechanics-box {
+    background:var(--ink);
+    border-radius:10px;
+    padding:28px 32px;
+    margin-bottom:16px;
+  }
+  .mechanics-box .mb-title {
+    font-size:9px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .mechanics-steps {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .ms-item .ms-num {
+    font-family:'DM Serif Display',serif;
+    font-size:28px;
+    color:rgba(255,255,255,0.15);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .ms-item .ms-head {
+    font-size:11px;
+    font-weight:600;
+    color:rgba(255,255,255,0.7);
+    margin-bottom:4px;
+    letter-spacing:0.02em;
+  }
+  .ms-item .ms-body {
+    font-size:11px;
+    color:rgba(255,255,255,0.35);
+    line-height:1.5;
+    font-weight:300;
+  }
+  .ms-item .ms-body strong { color:var(--gold-light); font-weight:500; }
+
+  /* RETURNS TABLE */
+  .rtable-wrap {
+    background:var(--warm);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:16px;
+  }
+  .rtable { width:100%; border-collapse:collapse; }
+  .rtable thead tr { background:var(--ink); }
+  .rtable thead th {
+    padding:13px 20px;
+    font-size:9px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    font-weight:500;
+    text-align:left;
+  }
+  .rtable thead th.num { text-align:right; }
+  .rtable tbody tr { border-bottom:1px solid var(--border-soft); transition:background 0.15s; }
+  .rtable tbody tr:last-child { border-bottom:none; }
+  .rtable tbody tr:hover { background:rgba(184,137,46,0.03); }
+  .rtable tbody td {
+    padding:15px 20px;
+    font-size:13px;
+    color:var(--ink-mid);
+    vertical-align:middle;
+  }
+  .rtable tbody td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .yr-cell {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'DM Serif Display',serif;
+    font-size:15px;
+    color:var(--ink);
+  }
+  .yr-tag {
+    font-family:'DM Sans',sans-serif;
+    font-size:9px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:10px;
+    font-weight:600;
+  }
+  .tag-g { background:var(--gold-pale); color:var(--gold); border:1px solid rgba(184,137,46,0.25); }
+  .tag-r { background:var(--green-pale); color:var(--green); border:1px solid rgba(45,106,79,0.2); }
+  .tag-x { background:var(--teal-pale); color:var(--teal); border:1px solid rgba(42,123,124,0.2); }
+  .ybar-wrap { display:flex; align-items:center; gap:8px; justify-content:flex-end; }
+  .ybar-track { width:72px; height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .ybar-fill { height:100%; background:var(--gold); border-radius:3px; }
+  .ybar-num { font-weight:600; color:var(--gold); font-size:13px; min-width:36px; text-align:right; }
+  .rtable tfoot td {
+    background:var(--ink);
+    color:white;
+    padding:16px 20px;
+    font-size:12px;
+  }
+  .ft-label { color:rgba(255,255,255,0.4); font-weight:300; }
+  .ft-val {
+    font-family:'DM Serif Display',serif;
+    font-size:18px;
+    color:var(--gold-light);
+    text-align:right;
+  }
+  .table-note {
+    font-size:11px;
+    color:var(--ink-faint);
+    font-weight:300;
+    margin-bottom:52px;
+    padding:0 4px;
+    line-height:1.5;
+  }
+
+  /* EXIT */
+  .exit-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .exit-card {
+    background:var(--warm);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:28px;
+  }
+  .exit-card.dark { background:var(--ink); border-color:var(--ink); }
+  .exit-card .ec-eyebrow {
+    font-size:9px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:20px;
+    color:var(--ink-faint);
+  }
+  .exit-card.dark .ec-eyebrow { color:var(--gold-light); }
+  .exit-row {
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .exit-card.dark .exit-row { border-bottom-color:rgba(255,255,255,0.07); }
+  .exit-row:last-child { border-bottom:none; padding-bottom:0; }
+  .exit-row .er-l { font-size:12px; color:var(--ink-light); font-weight:300; }
+  .exit-card.dark .er-l { color:rgba(255,255,255,0.4); }
+  .exit-row .er-v { font-size:13px; color:var(--ink); font-weight:500; }
+  .exit-card.dark .er-v { color:rgba(255,255,255,0.8); }
+  .exit-row.total .er-l { font-weight:600; color:var(--ink); }
+  .exit-card.dark .exit-row.total .er-l { color:white; }
+  .exit-row.total .er-v { font-family:'DM Serif Display',serif; font-size:20px; color:var(--gold); }
+  .exit-card.dark .exit-row.total .er-v { color:var(--gold-light); }
+  .deduct { color:var(--red-soft) !important; }
+
+  /* RETURN BANNER */
+  .return-banner {
+    background:linear-gradient(135deg,var(--ink) 0%,var(--slate) 100%);
+    border-radius:10px;
+    padding:36px 40px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:32px;
+    margin-bottom:52px;
+    position:relative;
+    overflow:hidden;
+  }
+  .return-banner::before {
+    content:'';
+    position:absolute;
+    top:-60px; right:-60px;
+    width:280px; height:280px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(184,137,46,0.1) 0%,transparent 70%);
+  }
+  .rb-item .rb-label {
+    font-size:9px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.3);
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .rb-item .rb-val {
+    font-family:'DM Serif Display',serif;
+    font-size:34px;
+    color:white;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .rb-item .rb-val.gold { color:var(--gold-light); }
+  .rb-item .rb-sub { font-size:11px; color:rgba(255,255,255,0.3); font-weight:300; }
+
+  /* RISK */
+  .risk-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .risk-item {
+    background:var(--warm);
+    border:1px solid var(--border);
+    border-left:3px solid var(--gold);
+    border-radius:0 8px 8px 0;
+    padding:16px 20px;
+  }
+  .risk-item .ri-head {
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .risk-item .ri-body {
+    font-size:12px;
+    color:var(--ink-light);
+    line-height:1.55;
+    font-weight:300;
+  }
+  .risk-footer {
+    margin-top:14px;
+    background:var(--green-pale);
+    border:1px solid rgba(45,106,79,0.2);
+    border-radius:8px;
+    padding:14px 18px;
+    font-size:12.5px;
+    color:var(--green);
+    font-weight:400;
+    line-height:1.5;
+  }
+  .risk-footer strong { font-weight:600; }
+
+  /* TERM SHEET */
+  .term-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
+    background:var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .term-row {
+    background:var(--warm);
+    padding:13px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+  }
+  .term-row .tr-l {
+    font-size:11px;
+    color:var(--ink-faint);
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .term-row .tr-v {
+    font-size:12px;
+    color:var(--ink);
+    font-weight:500;
+    text-align:right;
+  }
+  .term-row .tr-v.gold { color:var(--gold); }
+
+  /* CONTACT */
+  .contact-grid {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .contact-link {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--warm);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:16px 24px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:13px;
+    font-weight:500;
+  }
+  .contact-link:hover { border-color:var(--gold); }
+  .contact-link .ci { font-size:18px; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    font-size:10px;
+    color:#AAAABC;
+    line-height:1.7;
+    text-align:center;
+    padding:32px 20px 40px;
+    max-width:860px;
+    margin:0 auto;
+    font-weight:300;
+  }
+
+  /* MOBILE */
+  @media (max-width:760px) {
+    /* Header */
+    .header { padding:32px 20px 28px; }
+    .h-title { font-size:30px; line-height:1.1; }
+    .h-sub { font-size:12px; margin-bottom:28px; }
+    .hstat { border-right:none; margin-right:0; padding-right:0; }
+    .h-stats { gap:16px 24px; display:grid; grid-template-columns:1fr 1fr; }
+    .hstat .sv { font-size:22px; }
+    .hstat .sl { font-size:8px; }
+
+    /* Page */
+    .page { padding:28px 18px 48px; }
+    .section { margin-bottom:36px; }
+    .sec-title { font-size:20px; }
+    .sec-sub { font-size:12px; margin-bottom:20px; }
+
+    /* Grids */
+    .why-grid { grid-template-columns:1fr; }
+    .who-grid { grid-template-columns:1fr; }
+    .exit-grid { grid-template-columns:1fr; }
+    .return-banner { grid-template-columns:1fr; gap:16px; padding:24px 20px; }
+    .risk-grid { grid-template-columns:1fr; }
+    .term-grid { grid-template-columns:1fr; }
+
+    /* Mechanics */
+    .mechanics-steps { grid-template-columns:1fr 1fr; gap:14px; }
+    .mechanics-box { padding:20px; }
+    .ms-item .ms-num { font-size:22px; }
+    .ms-item .ms-head { font-size:10px; }
+    .ms-item .ms-body { font-size:10px; }
+
+    /* Returns table - hide driver column, keep key numbers */
+    .hide-mob { display:none; }
+    .rtable thead th,
+    .rtable tbody td { padding:11px 10px; font-size:12px; }
+    .rtable thead th:nth-child(2),
+    .rtable tbody td:nth-child(2) { display:none; }
+    .yr-cell { flex-direction:column; gap:3px; align-items:flex-start; }
+    .yr-cell .yr { font-size:13px; }
+    .ybar-track { width:40px; }
+    .ybar-num { font-size:11px; min-width:28px; }
+    .rtable tfoot td { padding:12px 10px; font-size:11px; }
+    .ft-val { font-size:15px; }
+
+    /* Exit */
+    .exit-card { padding:20px 18px; }
+    .exit-row .er-l { font-size:11px; }
+    .exit-row .er-v { font-size:12px; }
+    .exit-row.total .er-v { font-size:17px; }
+
+    /* Who cards */
+    .who-card { padding:22px 20px; }
+    .wc-head { font-size:16px; }
+    .wc-body { font-size:12px; }
+
+    /* Why blocks */
+    .why-block { padding:22px 18px; }
+    .why-block .wb-body { font-size:12px; }
+
+    /* Return banner */
+    .rb-item .rb-val { font-size:26px; }
+    .rb-item .rb-label { font-size:8px; }
+    .rb-item .rb-sub { font-size:10px; }
+
+    /* Risk */
+    .risk-item { padding:14px 16px; }
+    .risk-item .ri-head { font-size:12px; }
+    .risk-item .ri-body { font-size:11px; }
+    .risk-footer { font-size:11px; padding:12px 14px; }
+
+    /* Term sheet */
+    .term-row { flex-direction:column; gap:4px; padding:12px 16px; }
+    .term-row .tr-l { font-size:10px; }
+    .term-row .tr-v { font-size:12px; text-align:left; }
+
+    /* Calculator */
+    .calc-results-mob { grid-template-columns:1fr 1fr !important; }
+
+    /* Contact */
+    .contact-grid { flex-direction:column; }
+    .contact-link { padding:14px 18px; font-size:12px; }
+
+    /* Disclaimer */
+    .disclaimer { padding:20px 16px 32px; font-size:9px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="h-eyebrow">Joint Venture Proposal — Strictly Private and Confidential</div>
+  <h1 class="h-title">Wellington Commercial<br><em>Property Joint Venture</em></h1>
+  <div class="h-sub">A private joint venture open to a maximum of four capital partners. Wellington, New Zealand.</div>
+  <div class="h-stats">
+    <div class="hstat"><div class="sv">$6.61M</div><div class="sl">Purchase Price</div></div>
+    <div class="hstat"><div class="sv gold">8.0%</div><div class="sl">Acquisition Yield</div></div>
+    <div class="hstat"><div class="sv">$2.644M</div><div class="sl">Equity Required</div></div>
+    <div class="hstat"><div class="sv gold">7%</div><div class="sl">Preferred Return</div></div>
+    <div class="hstat"><div class="sv gold">14.9%</div><div class="sl">Target Annual Return</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- 1. THE OPPORTUNITY -->
+  <div class="section">
+    <div class="sec-eyebrow">The Opportunity</div>
+    <div class="sec-title">Three reasons this deal works</div>
+    <div class="sec-sub">A well-established multi-tenanted retail and commercial complex in Wellington, New Zealand. Strong arterial road frontage, on-site car parking, and a seismic rating above the Wellington threshold. Income from day one, growing returns through rent increases, and a compelling exit driven by a stronger rent roll.</div>
+    <div class="why-grid">
+      <div class="why-block">
+        <div class="wb-num">01</div>
+        <div class="wb-head">Immediate, diversified income</div>
+        <div class="wb-body">Seven established tenants including <strong>two national anchor retailers</strong> across retail, healthcare and commercial deliver <strong>$560,000 net income</strong> from settlement. Four leases grow automatically with inflation every year with no negotiation required.</div>
+      </div>
+      <div class="why-block">
+        <div class="wb-num">02</div>
+        <div class="wb-head">Rents growing throughout the hold</div>
+        <div class="wb-body">The anchor retail tenant is currently on a month-to-month arrangement at below-market rent. Formalisation at market rates is structured as a <strong>condition of settlement</strong>, locking in an immediate income uplift of ~$22,000 per year before the purchase completes. Three further tenants reset to market rates at lease renewal from Year 3.</div>
+      </div>
+      <div class="why-block">
+        <div class="wb-num">03</div>
+        <div class="wb-head">Exit at a tighter yield</div>
+        <div class="wb-body">Purchased at 8.0%, the property is expected to sell at a <strong>7.0% yield</strong> at Year 5, reflecting a stronger, fully stabilised rent roll and natural yield compression over the hold period. The exit is jointly agreed and can occur at any time if a compelling offer is received.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. WHO WE ARE -->
+  <div class="section">
+    <div class="sec-eyebrow">The Working Partner</div>
+    <div class="sec-title">Who is driving this deal</div>
+    <div class="sec-sub">Before committing capital, investors deserve to know exactly who they are partnering with and what they have delivered.</div>
+    <div class="who-grid">
+      <div class="who-card featured">
+        <div class="wc-label">Background</div>
+        <div class="wc-head">Uliana Bell</div>
+        <div class="wc-body">
+          Uliana Bell is a New Zealand based commercial property investor featured in an Australian property investment publication as a client wealth story under the headline "From Nicaragua to New Zealand: A Global Journey to Commercial Success."<br><br>
+          Originally from Russia, Uliana moved to New Zealand at 16 before spending several years building businesses in Central America. During COVID she discovered property investing, began trading residential property across New Zealand and Central America, and transitioned deliberately into commercial property in 2024. Her strategy centres on active value creation: acquiring assets with identifiable income upside, executing lease management and rent reversion, and compounding returns across a growing portfolio spanning New Zealand and Central America.
+        </div>
+      </div>
+      <div class="who-card">
+        <div class="wc-label">A Proven Track Record</div>
+        <div class="wc-head">What the last deal delivered</div>
+        <div class="wc-body">
+          A prior New Zealand commercial deal was acquired at <strong>$3.8M</strong> at below-market rent. Within one year the lease was renegotiated at significantly higher rates, increasing net income from <strong>$225,000 to $283,000 per year</strong>.<br><br>
+          Based on a 6.5% exit yield the property is now valued at approximately <strong>$4.35M</strong>, a capital uplift of $550,000 on the purchase price within one year. The capital partner invested $800,000 and on a straight 50/50 split has seen their equity grow by approximately <strong>$275,000 in unrealised capital gain</strong> plus ongoing income from the rent roll. The property remains held and continues to generate growing income.<br><br>
+          The same active value-creation approach underpins this opportunity.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. HOW THE RETURN IS CALCULATED -->
+  <div class="section">
+    <div class="sec-eyebrow">How It Works</div>
+    <div class="sec-title">How your return is calculated</div>
+    <div class="sec-sub">Every dollar follows a simple sequence before any surplus is shared. Capital partners are paid first at every step.</div>
+    <div class="mechanics-box">
+      <div class="mb-title">Income waterfall — applied every quarter</div>
+      <div class="mechanics-steps">
+        <div class="ms-item">
+          <div class="ms-num">1</div>
+          <div class="ms-head">Finance costs paid</div>
+          <div class="ms-body">Interest on the investment property finance is paid first from rental income. <strong>$257,790 per year</strong>, leaving <strong>$302,210 available</strong> for distribution in Year 1.</div>
+        </div>
+        <div class="ms-item">
+          <div class="ms-num">2</div>
+          <div class="ms-head">Operating costs paid</div>
+          <div class="ms-body">Property operating costs including property management are paid from rental income.</div>
+        </div>
+        <div class="ms-item">
+          <div class="ms-num">3</div>
+          <div class="ms-head">Your 7% preferred return</div>
+          <div class="ms-body">Capital partners receive their <strong>7% preferred return first</strong> before the working partner receives anything above their management fee.</div>
+        </div>
+        <div class="ms-item">
+          <div class="ms-num">4</div>
+          <div class="ms-head">Surplus split 70/30</div>
+          <div class="ms-body">Any income remaining after steps 1 to 3 is split <strong>70% to capital partners, 30% to the working partner.</strong></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--ink-faint);font-weight:300;padding:0 4px;margin-bottom:0;">The working partner's management fee of 1% per year is paid from the surplus at step 4, after capital partners have received their preferred return.</div>
+  </div>
+
+  <!-- 4. RETURNS TABLE -->
+  <div class="section">
+    <div class="sec-eyebrow">Annual Returns</div>
+    <div class="sec-title">Capital partners' return, year by year</div>
+    <div class="sec-sub">Based on $2.644M combined equity. Distributions paid quarterly, pre-tax estimates. The management fee is already deducted from the figures shown. Minimum individual contribution $500,000.</div>
+    <div class="rtable-wrap">
+      <table class="rtable">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th class="hide-mob">What drives the growth</th>
+            <th class="num">Net rental income</th>
+            <th class="num">Partners' distribution</th>
+            <th class="num">Return on equity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="yr-cell">Year 1 <span class="yr-tag tag-g">Anchor uplift</span></div></td>
+            <td class="hide-mob" style="font-size:12px;color:var(--ink-faint);font-weight:300;">Anchor tenant formalised at market rent as a condition of settlement. Four leases receive inflation increase.</td>
+            <td class="num" style="font-weight:600;">$560,000</td>
+            <td class="num" style="font-weight:600;">$201,502</td>
+            <td class="num"><div class="ybar-wrap"><div class="ybar-track"><div class="ybar-fill" style="width:72%"></div></div><span class="ybar-num">7.6%</span></div></td>
+          </tr>
+          <tr>
+            <td><div class="yr-cell">Year 2 <span class="yr-tag tag-r">Rent growth</span></div></td>
+            <td class="hide-mob" style="font-size:12px;color:var(--ink-faint);font-weight:300;">Inflation increases across all leases. Short-term lease converts to net lease, eliminating opex leakage.</td>
+            <td class="num" style="font-weight:600;">$574,000</td>
+            <td class="num" style="font-weight:600;">$210,820</td>
+            <td class="num"><div class="ybar-wrap"><div class="ybar-track"><div class="ybar-fill" style="width:76%"></div></div><span class="ybar-num">8.0%</span></div></td>
+          </tr>
+          <tr style="background:rgba(184,137,46,0.03);">
+            <td><div class="yr-cell">Year 3 <span class="yr-tag tag-x">3 renewals</span></div></td>
+            <td class="hide-mob" style="font-size:12px;color:var(--ink-faint);font-weight:300;">Three leases reset to market rates at renewal. Rent reversion adds ~$12,500 to annual income.</td>
+            <td class="num" style="font-weight:600;">$601,000</td>
+            <td class="num" style="font-weight:600;">$229,225</td>
+            <td class="num"><div class="ybar-wrap"><div class="ybar-track"><div class="ybar-fill" style="width:83%"></div></div><span class="ybar-num">8.7%</span></div></td>
+          </tr>
+          <tr>
+            <td><div class="yr-cell">Year 4 <span class="yr-tag tag-r">Rent growth</span></div></td>
+            <td class="hide-mob" style="font-size:12px;color:var(--ink-faint);font-weight:300;">Final lease renewal resets to market. All tenants on or near market rents.</td>
+            <td class="num" style="font-weight:600;">$616,000</td>
+            <td class="num" style="font-weight:600;">$239,218</td>
+            <td class="num"><div class="ybar-wrap"><div class="ybar-track"><div class="ybar-fill" style="width:87%"></div></div><span class="ybar-num">9.0%</span></div></td>
+          </tr>
+          <tr>
+            <td><div class="yr-cell">Year 5 <span class="yr-tag tag-r">Stabilised</span></div></td>
+            <td class="hide-mob" style="font-size:12px;color:var(--ink-faint);font-weight:300;">Fully stabilised rent roll. All tenants on market rents. Target exit window.</td>
+            <td class="num" style="font-weight:600;">$631,000</td>
+            <td class="num" style="font-weight:600;">$249,199</td>
+            <td class="num"><div class="ybar-wrap"><div class="ybar-track"><div class="ybar-fill" style="width:92%"></div></div><span class="ybar-num">9.4%</span></div></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="ft-label">Total distributions to capital partners over 5 years</td>
+            <td class="ft-val">$1,129,964</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- 5. EXIT -->
+  <div class="section">
+    <div class="sec-eyebrow">At Exit</div>
+    <div class="sec-title">How the sale proceeds are distributed</div>
+    <div class="sec-sub">Target sale in Year 5 at a 7.0% yield on net rental income of $631,000. The exit is jointly agreed. Neither party can force a sale without the other's consent. Exit can occur earlier if both parties agree.</div>
+    <div class="exit-grid">
+      <div class="exit-card">
+        <div class="ec-eyebrow">Sale Waterfall</div>
+        <div class="exit-row"><span class="er-l">Gross sale price (7.0% yield on $631,000)</span><span class="er-v">$9,014,286</span></div>
+        <div class="exit-row"><span class="er-l">Less real estate agent fee (2.5%)</span><span class="er-v deduct">($225,357)</span></div>
+        <div class="exit-row"><span class="er-l">Less finance repayment</span><span class="er-v deduct">($3,966,000)</span></div>
+        <div class="exit-row"><span class="er-l">Less capital partners' equity returned</span><span class="er-v deduct">($2,644,000)</span></div>
+        <div class="exit-row"><span class="er-l">Surplus to split 70/30</span><span class="er-v" style="color:var(--gold);font-weight:600;">$2,178,929</span></div>
+        <div class="exit-row"><span class="er-l">Capital partners' 70% of surplus</span><span class="er-v" style="color:var(--gold);font-weight:600;">$1,525,250</span></div>
+      </div>
+      <div class="exit-card dark">
+        <div class="ec-eyebrow">Capital Partners' Exit Summary</div>
+        <div class="exit-row"><span class="er-l">Capital returned in full</span><span class="er-v">$2,644,000</span></div>
+        <div class="exit-row"><span class="er-l">70% share of capital gain</span><span class="er-v">$1,525,250</span></div>
+        <div class="exit-row total"><span class="er-l">Total received on exit day</span><span class="er-v">$4,169,250</span></div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--ink-faint);font-weight:300;padding:0 4px;margin-bottom:20px;">The waterfall above shows the full $2.644M equity position. Individual partners receive their proportionate share based on their contribution. Use the calculator below to model your specific return.</p>
+    <div class="return-banner">
+      <div class="rb-item">
+        <div class="rb-label">Cash distributions per $1M invested</div>
+        <div class="rb-val">$427,369</div>
+        <div class="rb-sub">Over 5 years, paid quarterly</div>
+      </div>
+      <div class="rb-item">
+        <div class="rb-label">Capital gain share per $1M invested</div>
+        <div class="rb-val gold">$576,872</div>
+        <div class="rb-sub">70% of proportionate uplift at exit</div>
+      </div>
+      <div class="rb-item">
+        <div class="rb-label">Total profit per $1M invested</div>
+        <div class="rb-val gold">$1,004,241</div>
+        <div class="rb-sub">Excluding capital returned. At 14.9% per year.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. RISK -->
+  <div class="section">
+    <div class="sec-eyebrow">Risks</div>
+    <div class="sec-title">An honest assessment</div>
+    <div class="sec-sub">Every investment carries risk. These are the material risks in this deal and how they are managed.</div>
+    <div class="risk-grid">
+      <div class="risk-item">
+        <div class="ri-head">Exit yield</div>
+        <div class="ri-body">The 7.0% exit yield is a projection, not a guarantee. If Wellington commercial market conditions soften and the property sells at 7.5% instead, the exit value reduces to approximately $8.41M, reducing capital partners' gain share by around $195,000.</div>
+      </div>
+      <div class="risk-item">
+        <div class="ri-head">Interest rates</div>
+        <div class="ri-body">The finance rate of 6.5% per year is fixed at the model rate. If rates rise during the hold period, net distributable income would reduce. A 0.5% rate increase would reduce annual distributions to capital partners by approximately $19,830.</div>
+      </div>
+      <div class="risk-item">
+        <div class="ri-head">Vacancy</div>
+        <div class="ri-body">Seven tenants across multiple categories means no single tenant departure materially threatens the overall income. The largest tenant represents 30% of total income. All tenants are established operators with existing leases in place at settlement.</div>
+      </div>
+      <div class="risk-item">
+        <div class="ri-head">Early exit</div>
+        <div class="ri-body">Neither party can force a sale. If a capital partner requires liquidity before Year 5, the Joint Venture Agreement includes a buyout mechanism allowing one party to purchase the other's interest at an independently assessed market value.</div>
+      </div>
+    </div>
+    <div class="risk-footer">
+      <strong>Conservative modelling:</strong> All rent reversion figures are based on the lowest comparable market rates, not the highest. Even without any reversion whatsoever, the 7% preferred return to capital partners is fully covered from passing rents alone from day one.
+    </div>
+  </div>
+
+  <!-- 7. TERM SHEET -->
+  <div class="section">
+    <div class="sec-eyebrow">Key Terms</div>
+    <div class="sec-title">Summary of the structure</div>
+    <div class="term-grid">
+      <div class="term-row"><span class="tr-l">Preferred return</span><span class="tr-v gold">7% per year, paid quarterly, first priority</span></div>
+      <div class="term-row"><span class="tr-l">Surplus income split</span><span class="tr-v gold">70% capital partners / 30% working partner</span></div>
+      <div class="term-row"><span class="tr-l">Capital gain split at exit</span><span class="tr-v gold">70% capital partners / 30% working partner</span></div>
+      <div class="term-row"><span class="tr-l">Minimum individual contribution</span><span class="tr-v gold">$500,000</span></div>
+      <div class="term-row"><span class="tr-l">Capital partners' equity</span><span class="tr-v">$2,644,000 combined across up to 4 partners</span></div>
+      <div class="term-row"><span class="tr-l">Capital returned at exit</span><span class="tr-v">In full before any surplus is split</span></div>
+      <div class="term-row"><span class="tr-l">Distributions</span><span class="tr-v">Quarterly, in arrears</span></div>
+      <div class="term-row"><span class="tr-l">Target hold</span><span class="tr-v">5 years, exit can occur earlier by joint agreement</span></div>
+      <div class="term-row"><span class="tr-l">Exit decision</span><span class="tr-v">Jointly agreed, neither party can force a sale</span></div>
+      <div class="term-row"><span class="tr-l">Purchase price</span><span class="tr-v">$6,610,000</span></div>
+      <div class="term-row"><span class="tr-l">Property finance</span><span class="tr-v">60% of purchase price at 6.5% per year, interest only</span></div>
+      <div class="term-row"><span class="tr-l">Legal structure</span><span class="tr-v">Limited Liability Company with Joint Venture Agreement</span></div>
+      <div class="term-row"><span class="tr-l">Acquisition fee</span><span class="tr-v">3% of purchase price at settlement</span></div>
+      <div class="term-row"><span class="tr-l">Management fee</span><span class="tr-v">1% of property value per year, paid after preferred return</span></div>
+    </div>
+  </div>
+
+  <!-- CALCULATOR -->
+  <div class="section">
+    <div class="sec-eyebrow">Your Return</div>
+    <div class="sec-title">Model your own investment</div>
+    <div class="sec-sub">Slide to see your projected returns based on your individual contribution. Minimum investment $500,000.</div>
+    <div style="background:var(--warm);border:1px solid var(--border);border-radius:10px;padding:32px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+        <span style="font-size:12px;color:var(--ink-light);font-weight:300;">Your contribution</span>
+        <span id="calc-display" style="font-family:'DM Serif Display',serif;font-size:26px;color:var(--gold);">$800,000</span>
+      </div>
+      <input type="range" id="calc-slider" min="500000" max="2644000" step="50000" value="800000" oninput="updateCalc()"
+        style="width:100%;height:4px;-webkit-appearance:none;background:var(--border);border-radius:2px;outline:none;cursor:pointer;margin-bottom:28px;">
+      <div id="calc-results" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:8px;overflow:hidden;">
+        <div style="background:var(--cream);padding:16px 14px;text-align:center;">
+          <div style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;font-weight:500;">Year 1 cash</div>
+          <div id="c-y1" style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold);line-height:1;">$60,979</div>
+          <div style="font-size:10px;color:var(--ink-faint);margin-top:3px;font-weight:300;">quarterly payments</div>
+        </div>
+        <div style="background:var(--cream);padding:16px 14px;text-align:center;">
+          <div style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;font-weight:500;">Year 5 cash</div>
+          <div id="c-y5" style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold);line-height:1;">$75,360</div>
+          <div style="font-size:10px;color:var(--ink-faint);margin-top:3px;font-weight:300;">annual distribution</div>
+        </div>
+        <div style="background:var(--cream);padding:16px 14px;text-align:center;">
+          <div style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;font-weight:500;">5-year distributions</div>
+          <div id="c-dist" style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);line-height:1;">$341,742</div>
+          <div style="font-size:10px;color:var(--ink-faint);margin-top:3px;font-weight:300;">total cash received</div>
+        </div>
+        <div style="background:var(--cream);padding:16px 14px;text-align:center;">
+          <div style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;font-weight:500;">Property uplift share</div>
+          <div id="c-gain" style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold);line-height:1;">$461,287</div>
+          <div style="font-size:10px;color:var(--ink-faint);margin-top:3px;font-weight:300;">your 70% share at exit</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;background:var(--ink);border-radius:8px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <span style="font-size:12px;color:rgba(255,255,255,0.45);font-weight:300;">Total profit on your investment (excluding capital returned)</span>
+        <span id="c-total" style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--gold-light);">$803,029</span>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:var(--ink-faint);font-weight:300;">Your original capital is returned in full at exit on top of the amounts shown above. All figures are pre-tax estimates.</div>
+    </div>
+  </div>
+
+  <!-- 8. CONTACT -->
+  <div class="section">
+    <div class="sec-eyebrow">Contact</div>
+    <div class="sec-title">Get in touch</div>
+    <div class="sec-sub">To discuss this opportunity or request further information please reach out directly.</div>
+    <div class="contact-grid">
+      <a href="mailto:hayden.uliana.bell@gmail.com" class="contact-link">
+        <span class="ci">✉</span>
+        hayden.uliana.bell@gmail.com
+      </a>
+      <a href="https://wa.me/50585312388" target="_blank" class="contact-link">
+        <span class="ci">💬</span>
+        International Number: +505 8531 2388 (WhatsApp)
+      </a>
+      <a href="tel:+6402108030014" class="contact-link">
+        <span class="ci">📞</span>
+        New Zealand Number: 021 0803 0014
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="disclaimer">
+  This document is strictly private and confidential and is intended solely for the named recipient. It has been prepared for discussion purposes only and does not constitute a binding offer, financial advice, or a solicitation to invest. All financial projections are indicative estimates only and are not guaranteed. Past performance is not indicative of future returns. Recipients should conduct their own independent due diligence and seek appropriate financial, legal and tax advice before making any investment decision.
+</div>
+
+<script>
+  const totalEquity = 2644000;
+  const yearDist = [201502, 210820, 229225, 239218, 249199];
+  const exitGain = 1525250;
+
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString('en-NZ');
+  }
+
+  function updateCalc() {
+    const contrib = parseInt(document.getElementById('calc-slider').value);
+    const ratio = contrib / totalEquity;
+
+    const y1 = yearDist[0] * ratio;
+    const y5 = yearDist[4] * ratio;
+    const dist = yearDist.reduce((a, b) => a + b, 0) * ratio;
+    const gain = exitGain * ratio;
+    const profit = dist + gain;  // excludes capital return
+
+    document.getElementById('calc-display').textContent = fmt(contrib);
+    document.getElementById('c-y1').textContent = fmt(y1);
+    document.getElementById('c-y5').textContent = fmt(y5);
+    document.getElementById('c-dist').textContent = fmt(dist);
+    document.getElementById('c-gain').textContent = fmt(gain);
+    document.getElementById('c-total').textContent = fmt(profit);
+  }
+
+  // Style range slider thumb
+  const style = document.createElement('style');
+  style.textContent = 'input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#D4A84B;cursor:pointer;box-shadow:0 2px 8px rgba(184,137,46,0.35);}';
+  document.head.appendChild(style);
+
+  // Responsive calculator grid
+  function setCalcGrid() {
+    const grid = document.getElementById('calc-results');
+    if (!grid) return;
+    grid.style.gridTemplateColumns = window.innerWidth < 760 ? 'repeat(2,1fr)' : 'repeat(4,1fr)';
+  }
+  window.addEventListener('resize', setCalcGrid);
+  setCalcGrid();
+
+  updateCalc();
+</script>
+</body>
+</html>
